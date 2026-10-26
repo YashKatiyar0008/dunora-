@@ -1,0 +1,3 @@
+number,customer,email,amount,due_date,issued_date
+TEST-2001,Demo Ventures,finance@example.org,42500.00,2026-10-01,2026-09-01
+TEST-2002,Example Studio,accounts@example.org,18500.00,2026-11-05,2026-10-05

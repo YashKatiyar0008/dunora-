@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en"><head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#10192b">
+  <meta name="description" content="Dunora: evidence-first receivables, human-approved outreach and payment reconciliation.">
+  <title>Dunora — Revenue, without the uncertainty</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='15' fill='%2310192b'/%3E%3Cpath d='M17 35l11 11 20-27' fill='none' stroke='%2342e6c7' stroke-width='8' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/static/style.css">
+  <link rel="stylesheet" href="/static/v2.css">
+  <script src="/static/app.js" defer></script>
+</head><body>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <section id="auth" class="auth-screen">
+    <div class="auth-feature">
+      <div class="brand logo-light"><span class="brand-icon">↗</span><span>duno<span class="brand-second">ra</span></span></div>
+      <div class="auth-hero"><div class="eyebrow light"><span class="pulse"></span> THE RECEIVABLES COMMAND CENTER</div>
+        <h1>Stop chasing.<br><em>Start collecting.</em></h1>
+        <p>Clarity on every invoice, confidence in every follow-up. Turn overdue receivables into a predictable growth engine.</p>
+        <div class="mock-insight"><span class="mock-insight-icon">✦</span><div><strong>Priority insight</strong><span>3 accounts need your attention today.</span></div><span class="mock-insight-arrow">↗</span></div>
+      </div>
+      <div class="auth-foot"><span>Purpose-built for ambitious businesses.</span><span>© 2026 Dunora</span></div>
+      <div class="decor decor-one"></div><div class="decor decor-two"></div>
+    </div>
+    <div class="auth-right"><div class="auth-card"><div class="mini-logo"><span class="brand-icon">↗</span> Dunora</div>
+      <div class="auth-tabs"><button id="tab-login" class="active" data-auth-tab="login">Sign in</button><button id="tab-register" data-auth-tab="register">Create workspace</button></div>
+      <h2 id="auth-title">Welcome back</h2><p id="auth-sub" class="muted">Your cash flow deserves a clearer view.</p>
+      <form id="auth-form">
+        <label id="company-wrap" class="field hidden">Company name<input id="company" autocomplete="organization" placeholder="e.g. Acme Studio" maxlength="160"></label>
+        <label class="field">Work email<input id="email" type="email" required autocomplete="email" placeholder="you@company.com"></label>
+        <label class="field">Password<input id="password" type="password" required minlength="10" autocomplete="current-password" placeholder="At least 10 characters"></label>
+        <button id="auth-submit" class="btn primary full" type="submit">Continue to workspace <span>→</span></button>
+      </form>
+      <div class="or"><span>OR</span></div>
+      <button class="btn outline full" id="demo-btn"><span class="sparkle">✦</span> Explore with an instant demo</button>
+      <p class="auth-note">Demo uses fictional companies and never sends actual emails or takes real payments.</p>
+    </div></div>
+  </section>
+  <div id="shell" class="shell hidden">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-icon">↗</span><span>duno<span class="brand-second">ra</span></span><span class="brand-suite">NEXUS</span></div>
+      <div class="workspace-switch"><span class="workspace-icon">◈</span><span class="workspace-copy"><strong id="side-company">Your workspace</strong><small>Business workspace</small></span><span class="workspace-chevron">⌄</span></div>
+      <div class="nav-label">MAIN MENU</div>
+      <nav id="nav" aria-label="Main navigation">
+        <button class="nav-item selected" data-view="dashboard"><span class="nav-ico">▦</span><span>Overview</span></button>
+        <button class="nav-item" data-view="invoices"><span class="nav-ico">▤</span><span>Invoices & ledger</span></button>
+      </nav>
+      <div class="nav-label second-label">COLLECTIONS <span class="nav-label-chevron">⌄</span></div>
+      <nav aria-label="Collections">
+        <button class="nav-item" data-view="workbench"><span class="nav-ico">⌁</span><span>Collection studio</span><span id="work-count" class="nav-count">0</span></button>
+        <button class="nav-item" data-view="activity"><span class="nav-ico">◷</span><span>Activity & audit</span></button>
+      </nav>
+      <div class="nav-label second-label">WORKSPACE</div>
+      <nav aria-label="Account"><button class="nav-item" data-view="billing"><span class="nav-ico">◇</span><span>Plans & billing</span></button></nav>
+      <div class="sidebar-spacer"></div>
+      <div class="sidebar-promo"><span class="promo-star">✦</span><strong>Stay ahead of every due date.</strong><p>Import your receivables and see what needs action.</p><button id="promo-import">Import invoices <span>↗</span></button></div>
+      <div class="sidebar-user"><div class="user-avatar">D</div><span><strong id="user-email">team@example.com</strong><small id="user-plan">Starter plan</small></span><button id="logout" title="Sign out" aria-label="Sign out">↪</button></div>
+    </aside>
+    <div class="main-area">
+      <header class="topbar"><button id="mobile-menu" aria-label="Toggle menu">☰</button><div class="breadcrumbs"><span class="top-breadcrumb-prefix">DUNORA / </span><strong id="crumb">Overview</strong></div><div class="top-actions"><button class="top-search" data-view="invoices" title="Open searchable invoice ledger">⌕ &nbsp; Search invoices <kbd>↗</kbd></button><span class="live-dot"></span><span class="system-status">Workspace live</span><div class="topbar-divider"></div><button class="icon-btn" data-view="workbench" title="Review collection queue">♧</button><button class="icon-btn" id="top-export" title="Export audit log">⇩</button><div class="top-avatar">D</div></div></header>
+      <main id="content" tabindex="-1"></main>
+      <footer class="footbar"><span>Dunora · Evidence-first revenue operations</span><span><i></i> Connected to your workspace</span></footer>
+    </div>
+  </div>
+  <div id="modal" class="modal-backdrop hidden" role="presentation"><div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title"><div class="modal-head"><div><small>YOUR WORKSPACE</small><h2 id="modal-title">Details</h2></div><button id="close-modal" class="close-modal" aria-label="Close dialog">✕</button></div><div id="modal-body"></div></div></div>
+</body></html>

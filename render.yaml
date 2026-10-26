@@ -1,0 +1,27 @@
+# Dunora Nexus V2 — Render $0 demo configuration
+# Both services are free; Postgres expires 30 days after creation.
+services:
+  - type: web
+    name: dunora-nexus-v2
+    runtime: docker
+    plan: free
+    region: singapore
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: dunora-v2-postgres
+          property: connectionString
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: ALLOW_PUBLIC_DEMO
+        value: "true"
+
+databases:
+  - name: dunora-v2-postgres
+    plan: free
+    region: singapore
+    databaseName: dunora
+    user: dunora
+    ipAllowList: []

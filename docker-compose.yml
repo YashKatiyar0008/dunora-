@@ -1,0 +1,27 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql+psycopg://dunora:local_dev_password@db:5432/dunora
+      COOKIE_SECURE: "false" # Set true on HTTPS deployments
+      ALLOW_PUBLIC_DEMO: "true"
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: dunora
+      POSTGRES_PASSWORD: local_dev_password
+      POSTGRES_DB: dunora
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U dunora"]
+      interval: 5s
+      timeout: 4s
+      retries: 8
+volumes:
+  postgres_data:
